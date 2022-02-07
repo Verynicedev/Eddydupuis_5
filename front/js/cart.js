@@ -49,7 +49,7 @@ function displayProduct(integrateProduct) {
   });
 }
 
-// Calcul le prix total de tout les articles du panier
+// Calcul le prix total de tous les articles du panier
 function displaysTotalPriceOfTheItems() {
   let productsStoreInLocalStorage = getProductsInLocalStorage();
   let totalPriceProducts = productsStoreInLocalStorage.reduce(
@@ -58,11 +58,11 @@ function displaysTotalPriceOfTheItems() {
     },
     0
   );
-  // Affiche le prix total de tout les articles du panier
+  // Affiche le prix total de tous les articles du panier
   document.querySelector("#totalPrice").innerHTML = totalPriceProducts;
 }
 
-// Calcul le nombre total de tout les articles du panier
+// Calcul le nombre total de tous les articles du panier
 function displaysTotalArticle() {
   let productsStoreInLocalStorage = getProductsInLocalStorage();
   let totalItemProducts = productsStoreInLocalStorage.reduce(
@@ -274,7 +274,7 @@ listenerCart();
 
 // Envoi les informations à l'API et récupère l'id de la commande
 async function makeAndOrder() {
-  // Récupere les informations saisies par l'utilisateur "formulaire et panier"
+  // Récupère les informations saisies par l'utilisateur "formulaire et panier"
   const order = infoUser();
   // Envoi les données de type "post" récupérer par l'utilisateur à l'API
   const post = {
