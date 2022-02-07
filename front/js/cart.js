@@ -158,7 +158,7 @@ function checkFormValidity() {
   deleteSendError();
   // Erreur de saisie dans le formulaire
   const myRegex_letter = /^[a-zA-Z-\s]{3,20}$/;
-  const myRegex_adress = /^[a-zA-Z0-9\s]+$/;
+  const myRegex_address = /^[a-zA-Z0-9\s]+$/;
   const myRegex_city = /^[0-9]+$/;
   const myRegex_email =
     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -168,35 +168,35 @@ function checkFormValidity() {
     myRegex_letter,
     firstName,
     "firstNameErrorMsg",
-    "Le prénom doit comporter des lettres uniquements"
+    "Le prénom doit comporter uniquement des lettres de 3 à 20 caractères maximum"
   );
 
   const hasErrorForLastname = checkInputValidityAndDisplayErrorIfNeeded(
     myRegex_letter,
     lastName,
     "lastNameErrorMsg",
-    "Le nom doit comporter des lettres uniquements"
+    "Le nom doit comporter uniquement des lettres de 3 à 20 caractères maximum"
   );
 
   const hasErrorForAddress = checkInputValidityAndDisplayErrorIfNeeded(
-    myRegex_adress,
+    myRegex_address,
     address,
     "addressErrorMsg",
-    "Veuillez indiquer une adresse correct"
+    "Veuillez indiquer une adresse correcte"
   );
 
   const hasErrorForCity = checkInputValidityAndDisplayErrorIfNeeded(
     myRegex_city,
     city,
     "cityErrorMsg",
-    "La ville doit comporter des chiffres uniquements"
+    "Veuillez indiquer le code postal de votre ville"
   );
 
   const hasErrorForEmail = checkInputValidityAndDisplayErrorIfNeeded(
     myRegex_email,
     email,
     "emailErrorMsg",
-    "Veuillez indiquer un email valide"
+    "Veuillez indiquer un email valide 'exemple@hotmail.com'"
   );
 
   if (
@@ -222,7 +222,7 @@ function checkInputValidityAndDisplayErrorIfNeeded(
   selectorForErrorMessage,
   errorMessage
 ) {
-  const sendError = " Merci de remplir tout les champs du formulaire";
+  const sendError = " Merci de remplir tous les champs du formulaire";
   if (inputToCheck.value.trim() == "") {
     document.getElementById(selectorForErrorMessage).innerHTML = sendError;
     return true;
