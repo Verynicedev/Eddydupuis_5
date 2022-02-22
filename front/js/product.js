@@ -1,8 +1,8 @@
 "use strict";
 
-import { setProductLocalStorage } from "/front/js/fonction.js";
-import { getProductsInLocalStorage } from "/front/js/fonction.js";
-import { urlApi } from "/front/js/urlApi.js";
+import { urlApi } from "/front/js/urlApi.js";                       // Rappel de l'url de l'API
+import { setProductLocalStorage } from "/front/js/fonction.js";     // Envoi les informations dans le local storage
+import { getProductsInLocalStorage } from "/front/js/fonction.js";  // Récupere les informations dans le local storage
 
 // Récupération de la chaine de requête dans l'url
 const urlId = window.location.search;
@@ -74,29 +74,29 @@ function usersProductChoice() {
 // Analyse la quantité du produit et va les enregistrer dans le local storage selon la couleur du produit
 function quantityConditionAddToCard() {
   const userChoice = usersProductChoice();
-  if (
+  if (                                                              // Si la quantité est supérieur à 0 et inférieur à 100 et que la couleur est égale 0
     quantityValue.value > 0 &&
     quantityValue.value <= 100 &&
     colors.value != 0
   ) {
     window.location.href = "cart.html";
-    if (productsStoreInLocalStorage) {
+    if (productsStoreInLocalStorage) {                              // Si le localStorage contient déjà un produit rajoute le produit existant
       const productFind = productsStoreInLocalStorage.find(
         (product) =>
           product.idProduit === userChoice.idProduit &&
           product.color === colors.value
       );
       if (productFind) {
-        productFind.quantity += userChoice.quantity;
+        productFind.quantity += userChoice.quantity;                // Mise a jour du localStorage avec les choix de l'utilisateur
         setProductLocalStorage(productsStoreInLocalStorage);
       } else {
         productsStoreInLocalStorage.push(userChoice);
         setProductLocalStorage(productsStoreInLocalStorage);
       }
     }
-    else {
-      productsStoreInLocalStorage = [];
-      productsStoreInLocalStorage.push(userChoice);
+    else {                                                          
+      productsStoreInLocalStorage = [];                             // Création du localStorage (vide)
+      productsStoreInLocalStorage.push(userChoice);                 // Mise a jour du localStorage avec le choix de l'utilisateur
       setProductLocalStorage(productsStoreInLocalStorage);
     }
   } else {
@@ -105,7 +105,7 @@ function quantityConditionAddToCard() {
 }
 
 // Envoi le produit dans le panier
-function listenerAddToCart() {
+function listenerAddToCart() {                                      // Bouton "ajouter au panier" (fonctionel)
   const selectBtnAddToCart = document.getElementById("addToCart");
   selectBtnAddToCart.addEventListener("click", (event) => {
     event.preventDefault();

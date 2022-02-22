@@ -7,7 +7,7 @@ const productsToLoad = await loadingProductApi();
 displayProductsHome();
 
 // Construction de notre interface HTML et intégration de nos produits via l'API
-function displayProductHome(product) {
+function displayProductHome(product) {                          // Appel du DOM pour faire la liaison entre le HTML et le javaScript
   const selectIdItem = document.getElementById("items");        // On appelle la classe "items" de notre HTML
   const createHref = document.createElement("a");               // Création d'un hyperlien
   createHref.href = `product.html?id=${product._id}`;           // Mise en forme de nos liens
@@ -23,7 +23,7 @@ function displayProductHome(product) {
 
 // Récupère tous les produits à afficher et les intègrent dans le html
 function displayProductsHome() {
-  productsToLoad.forEach((product) => {
+  productsToLoad.forEach((product) => {                          // Pour chaque produit trouvé -> l'afficher
     displayProductHome(product);
   });
 }

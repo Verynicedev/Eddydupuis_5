@@ -1,8 +1,8 @@
 "use strict";
 
-import { urlApi } from "/front/js/urlApi.js";
-import { setProductLocalStorage } from "/front/js/fonction.js";
-import { getProductsInLocalStorage } from "/front/js/fonction.js";
+import { urlApi } from "/front/js/urlApi.js";                       // Rappel de l'url de l'API
+import { setProductLocalStorage } from "/front/js/fonction.js";     // Envoi les informations dans le local storage
+import { getProductsInLocalStorage } from "/front/js/fonction.js";  // Récupere les informations dans le local storage
 
 displayProducts();
 displaysTotalPriceOfTheItems();
@@ -36,13 +36,13 @@ function displayProduct(integrateProduct) {
       </div> 
     </article>`;
 
-  // "Listeners" permet la suppression du|des articles (Seulement apres que l'HTML soit construit)
+  // "Listeners" permet la suppression du|des articles (Seulement apres que l'HTML soit construit) (bouton "delete" fonctionnel)
   const deleteLinks = document.querySelectorAll(".deleteItem");
   deleteLinks.forEach((deleteLink) => {
     deleteLink.addEventListener("click", deleteItem);
   });
 
-  // "Listeners" permet de modifier la quantité du|des articles (Seulement apres que l'HTML soit construit)
+  // "Listeners" permet de modifier la quantité du|des articles (Seulement apres que l'HTML soit construit) (champ "quantité" fonctionnel)
   const quantityLinks = document.querySelectorAll(".itemQuantity");
   quantityLinks.forEach((quantityLink) => {
     quantityLink.addEventListener("change", changeTheQuantityOfTheProduct);
@@ -126,11 +126,12 @@ function changeTheQuantityOfTheProduct(event) {
       product.color === productToModifColor
   );
 
+// Condition qui va tester si la quantité d'article est égale ou supérieur à 1 sinon retourne une erreur
   const quantityMin = event.target.closest(".itemQuantity");
   if (quantityMin.value < 1) {
     alert("Veuillez indiquer une valeur positive");
     return (quantityMin.value = 1);
-  } else {
+  } else {                                                      // Sinon met a jour le localStorage
     productTuUpdate.quantity = event.target.valueAsNumber;
     setProductLocalStorage(productsInCart);
   }
